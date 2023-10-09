@@ -12,9 +12,14 @@ const Room = sequelize.define(tableName, {
         allowNull: false,
         unique: true,
     },
+    status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: 1,
+    }
 })
 
-Room.sync().then(() => {
+await Room.sync().then(() => {
     console.log(`${tableName} table is Ready!`)
 })
 

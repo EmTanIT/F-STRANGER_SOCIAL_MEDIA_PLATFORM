@@ -33,7 +33,7 @@ ChatRoom.belongsTo(User, { foreignKey: 'userId' })
 Room.hasMany(ChatRoom, { foreignKey: 'roomId' })
 ChatRoom.belongsTo(Room, { foreignKey: 'roomId' })
 
-ChatRoom.sync().then(() => {
+await ChatRoom.sync().then(() => {
     console.log(`${tableName} table is Ready!`)
 })
 

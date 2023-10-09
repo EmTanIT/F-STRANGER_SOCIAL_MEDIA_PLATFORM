@@ -37,7 +37,7 @@ Message.belongsTo(User, { foreignKey: 'userId' })
 ChatRoom.hasMany(Message, { foreignKey: 'chatRoomId' })
 Message.belongsTo(ChatRoom, { foreignKey: 'chatRoomId' })
 
-Message.sync().then(() => {
+await Message.sync().then(() => {
     console.log(`${tableName}  table is Ready!`)
 })
 
