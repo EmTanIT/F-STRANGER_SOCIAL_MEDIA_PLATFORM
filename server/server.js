@@ -4,7 +4,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 
-import indexRouter from './routes/index.js'
+import userRouter from './routes/user.js'
 
 // ===== Config =====
 const server = express()
@@ -15,7 +15,7 @@ server.use(cors())
 server.use(bodyParser.json())
 
 // ===== Routes =====
-server.use('/', indexRouter)
+server.use('/users', userRouter)
 
 server.listen(PORT, () => {
     console.log(`Server is listening at PORT=${PORT}`)
