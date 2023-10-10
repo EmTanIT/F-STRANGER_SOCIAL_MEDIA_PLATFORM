@@ -3,6 +3,7 @@ import User from '../models/User.js'
 import { DataResponse, NotFoundResponse, MessageResponse, InternalErrorResponse, ErrorResponse, UnauthorizedResponse } from '../common/reponses.js'
 import Room from '../models/Room.js'
 import ChatRoom from '../models/ChatRoom.js'
+import jwt from 'jsonwebtoken'
 
 const router = express.Router()
 
@@ -23,17 +24,20 @@ router.post('/', async (req, res) => {
         }
     })
     if (!user) {
-        //chưa có thì tạo mới 1 User
-        //tìm kiếm thử 1 phòng nào đang thiếu người
-        //không tìm được phòng thì tạo một phòng mới
-        //đợi khi nào có phòng thì chat
-        //cứ 2 đứa thì nhét zô 1 phòng
+        console.log("Welcome To F-Strangers ! A stranger !");
+        /**
+        *chưa có thì tạo mới 1 User
+        * tìm kiếm thử 1 phòng nào đang thiếu người
+        * không tìm được phòng thì tạo một phòng mới
+        * đợi khi nào có phòng thì chat
+        *  cứ 2 đứa thì nhét zô 1 phòng
+        */
         try {
             const newUser = await User.create({
                 username: userData
             })//tạo mới 1 User
 
-            let roomAvailable
+            let roomAvailable = null
 
             const roomCanUse = await Room.findAll(
                 {
@@ -59,21 +63,28 @@ router.post('/', async (req, res) => {
                 }
             }//tìm 1 phòng chưa đủ 2 người
 
-            if (!roomAvailable) {//tìm được rồi
-                //Join vô phòng đó thôi
-                await ChatRoom.create({
+            if (roomAvailable != null) {//tìm được rồi
+                console.log("Finding room Successfully !");
+                const roomFinded = await ChatRoom.create({
                     userId: newUser.id,
                     roomId: roomAvailable.id
-                })
-                res.json(DataResponse(ChatRoom))
+                })//Join vô phòng đó
+
+                const userInfo = {
+                    id : newUser.id,
+                    username : newUser.username,
+                    roomId : roomFinded.roomId
+                }
+
+                sendToken(res, userInfo)
+
             } else {//chưa tìm được
-                //Tạo mới phòng đó và ngồi đợi
+                console.log("A new room is created for you !");
                 let roomNameR
                 let roomF
-
                 do {
                     roomNameR = Math.floor(Math.random() * 100000000);
-                    roomF = Room.findOne({
+                    roomF = await Room.findOne({
                         where: {
                             roomName: roomNameR
                         }
@@ -82,20 +93,28 @@ router.post('/', async (req, res) => {
 
                 const room = await Room.create({
                     roomName: roomNameR
-                })//Tạo mới 1 phòng
+                })//Tạo mới phòng đó và ngồi đợi
 
                 const chatRoom = await ChatRoom.create({
                     userId: newUser.id,
                     roomId: room.id
                 })//Tạo mới 1 phòng chat
+                
+                const userInfo = {
+                    id : newUser.id,
+                    username : newUser.username,
+                    roomId : chatRoom.roomId
+                }
 
-                res.json(DataResponse(room))
+                sendToken(res, userInfo)
+
             }
         } catch (error) {
             console.log(error);
             res.json(InternalErrorResponse(500))
         }
     } else {
+        console.log("Welcome Back!");
         try {
             let room
             const chatRoom = await ChatRoom.findAll({
@@ -112,12 +131,36 @@ router.post('/', async (req, res) => {
                     }
                 })
             }
-            res.json(DataResponse(room))
+            console.log("Finding room Successfully !");
+            
+            const userInfo = {
+                id : user.id,
+                username : user.username,
+                roomId : room.id
+            }
+
+            sendToken(res, userInfo)
+
         } catch (error) {
             console.log(error);
             res.json(InternalErrorResponse(500))
         }
     }
 })
+
+function sendToken(res, userInfo) {
+    const payload = {
+        id: userInfo.id,
+        username: userInfo.username,
+        roomId: userInfo.roomId,
+    }
+    const token = jwt.sign(payload, process.env.SECRET, {
+        expiresIn: '3h'
+    })
+    res.cookie('token', token)
+    res.json(DataResponse({
+        token: token
+    }))
+}
 
 export default router
