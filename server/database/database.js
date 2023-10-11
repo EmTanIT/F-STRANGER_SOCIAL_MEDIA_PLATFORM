@@ -5,6 +5,8 @@ const sequelize = new Sequelize(process.env.MYSQL_DB, process.env.MYSQL_USERNAME
     dialect: 'mysql',
     port: process.env.MYSQL_PORT,
     logging: false,
+    charset: "utf8mb4",
+    collate: "utf8mb4_unicode_ci",
     pool: {
       max: 100,
       min: 0,

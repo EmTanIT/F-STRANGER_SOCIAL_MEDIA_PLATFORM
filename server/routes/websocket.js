@@ -47,7 +47,7 @@ export function initWebsocket(serverInstance) {
                 await Message.create({
                     userId: socket.data.id,
                     chatRoomId : socket.data.roomId,
-                    content: msg
+                    content: "" + msg + ""
                 })
                 socket.to(roomName).emit(SEND_MESSAGE_EVENT, message)
             })
