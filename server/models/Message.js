@@ -4,6 +4,7 @@ import SQLModel from '../common/SQLModel.js'
 import sequelize from '../database/database.js'
 import User from './User.js'
 import ChatRoom from './ChatRoom.js'
+import Room from './Room.js'
 
 const tableName = 'messages'
 
@@ -21,7 +22,7 @@ const Message = sequelize.define(tableName, {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: ChatRoom,
+            model: Room,
             key: 'id'
         }
     },
@@ -34,8 +35,8 @@ const Message = sequelize.define(tableName, {
 User.hasMany(Message, { foreignKey: 'userId' })
 Message.belongsTo(User, { foreignKey: 'userId' })
 
-ChatRoom.hasMany(Message, { foreignKey: 'chatRoomId' })
-Message.belongsTo(ChatRoom, { foreignKey: 'chatRoomId' })
+Room.hasMany(Message, { foreignKey: 'chatRoomId' })
+Message.belongsTo(Room, { foreignKey: 'chatRoomId' })
 
 await Message.sync().then(() => {
     console.log(`${tableName}  table is Ready!`)

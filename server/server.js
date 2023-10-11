@@ -10,6 +10,8 @@ import roomRouter from './routes/room.js'
 import chatRoomRouter from './routes/chatRoom.js'
 import messageRouter from './routes/message.js'
 import overwriteResponseJSON from '../server/middlewares/overwriteResponseJSON.js'
+import { initWebsocket } from './routes/websocket.js'
+
 
 // ===== Config =====
 const server = express()
@@ -30,6 +32,8 @@ server.use('/rooms', roomRouter)
 server.use('/chatRooms', chatRoomRouter)
 server.use('/messages', messageRouter)
 
-server.listen(PORT, () => {
+const serverInstance = server.listen(PORT, () => {
     console.log(`Server is listening at PORT=${PORT}`)
 })
+
+initWebsocket(serverInstance)
