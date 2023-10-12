@@ -9,7 +9,12 @@
 
     async function handleLogin() {
         if (username === "") {
-            errorMsg = "Đặc Vụ thì phải có !";
+            errorMsg = "Đặc Vụ thì phải có Mật Danh !";
+            console.log(errorMsg);
+            setTimeout(() => {
+                errorMsg = "";
+                console.log(errorMsg);
+            }, 3000);
             return;
         }
 
@@ -28,24 +33,25 @@
             console.log(res.data);
         }
     }
+
 </script>
 
 <link rel="stylesheet" href="doodle.css" />
-<div class="doodle-border doode main">
-        <div class="welcome">F-STRANGERS</div>
-        <div class="input">
-            <form class="doodle">
-                <input
-                    bind:value={username}
-                    type="text"
-                    placeholder="ENTER YOUR NICKNAME"
-                />
-                <button on:click={handleLogin}>LOGIN</button><br />
-            </form>
-        </div>
+<div class="doodle-border doodle main">
+    <div class="welcome">F-STRANGERS</div>
+    <div class="input">
+        <form class="doodle">
+            <input
+                bind:value={username}
+                type="text"
+                placeholder="Nhập Mật Danh Của Bạn !"
+            />
+            <button on:click={handleLogin}>Tìm Ghệ</button><br />
+        </form>
+    </div>
 </div>
 {#if errorMsg !== ""}
-    <p class="error-msg">{errorMsg}</p>
+    <div class="message doodle doodle-border">{errorMsg}</div>
 {/if}
 
 <style>
@@ -70,8 +76,29 @@
         margin-top: 70px;
         display: flex;
         justify-content: center;
+        /* padding-left: 10px; */
     }
-    .input input{
+    .input input {
         margin-right: 30px;
+    }
+    .message {
+        /* background-color: #3498db;
+        color: #fff; */
+        padding: 10px;
+        position: fixed;
+        top: 50px;
+        right: 20px;
+        /* border-radius: 5px; */
+        font-family: "Short Stack", cursive;
+        animation: slide-in 0.5s ease-in-out;
+    }
+
+    @keyframes slide-in {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(0);
+        }
     }
 </style>
