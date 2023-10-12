@@ -82,6 +82,7 @@
                 // messageList.forEach((element) => {
                 //     messages.push(element.content);
                 // });
+                console.log(messageList);
                 messages = [...messages, ...messageList]
             }
             console.log(messages);
