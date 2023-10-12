@@ -1,6 +1,6 @@
 <script>
     import axios from "axios";
-    import "doodle.css/doodle.css";
+    import 'doodle.css/doodle.css'
 
     axios.defaults.withCredentials = true;
 
@@ -35,7 +35,6 @@
     }
 
 </script>
-
 <link rel="stylesheet" href="doodle.css" />
 <div class="doodle-border doodle main">
     <div class="welcome">F-STRANGERS</div>
@@ -55,10 +54,12 @@
 {/if}
 
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Short+Stack&display=swap");
     * {
         margin: 0;
         padding: 0;
         font-size: 100%;
+        font-family: "Short Stack", cursive;
     }
     .main {
         margin: 0 auto;
@@ -76,10 +77,12 @@
         margin-top: 70px;
         display: flex;
         justify-content: center;
-        /* padding-left: 10px; */
+        
     }
     .input input {
         margin-right: 30px;
+        padding-right: 10px;
+        width: 300px;
     }
     .message {
         /* background-color: #3498db;
