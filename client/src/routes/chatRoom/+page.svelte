@@ -103,7 +103,7 @@
     </div>
     <div class="bot">
         <div class="bot-left doodle doodle-border">
-            <div class="doodle doodle-border content">
+            <div class="doodle content">
                 {#each messages as msg}
                     <div class= "line">
                         <div class= { "item doodle doodle-border " +
@@ -125,24 +125,33 @@
                 {/each}
             </div>
             {#if isConnected}
-                <form class="doodle message">
-                    <input
-                        class="chat doodle"
-                        bind:value={messageContent}
-                        bind:this={inputMessageDom}
-                        type="text"
-                        placeholder="Type message here"
-                    />
-                    <input
-                        class="doodle"
-                        on:click={handleSubmit}
-                        type="submit"
-                        value="Gửi Cho Ghệ Iu"
-                    />
-                </form>
+                <div class="message-bottom doodle-border">
+                    <form class="doodle message">
+                        <input
+                            class="chat doodle margin"
+                            bind:value={messageContent}
+                            bind:this={inputMessageDom}
+                            type="text"
+                            placeholder="Type message here"
+                        />
+                        <input
+                            class="doodle margin"
+                            on:click={handleSubmit}
+                            type="submit"
+                            value="Gửi Cho Ghệ Iu"
+                        />
+                    </form>
+                </div>
             {/if}
         </div>
-        <div class="bot-right doodle doodle-border">haha</div>
+        <div class="bot-right doodle doodle-border">
+            <div class="User">
+                haha
+            </div>
+            <div class="logout doodle doodle-border">
+                End Chat
+            </div>
+        </div>
     </div>
 </div>
 
@@ -203,26 +212,37 @@
     }
     .content {
         margin: 10px;
-        height: 460px;
+        height: 440px;
         overflow-y: auto;
-        
     }
-    .message {
+    .margin{
+        margin-top: 6px;
+        background-color: #FDF7F1;
+    }
+    .message{
+        background-color: bisque !important;
         /* margin-top: 10px; */
-        margin-top: 10px;
+    }
+    .message-bottom{
+        /* margin-top: 10px;
         height: 40px;
         margin-left: 10px;
-        margin-right: 10px;
-        
+        margin-right: 10px; */
+        background-color: bisque;
+        height: 70px;
+        width: 1020px;
     }
     .chat {
         width: 850px;
+        /* margin-right: 2px;
+        margin-left: 5px; */
     }
     .line{
         width: auto;
         height: 38px;
         /* background-color: blue; */
         margin: 10px;
+        margin-left: 0px;
         position: relative;
     }
     .item{
@@ -243,5 +263,18 @@
         right: 10px;
         padding-right: 10px;
         padding-left: 30px;
+    }
+    .bot-right{
+        
+    }
+    .logout{
+        margin: 0 auto;
+        margin-top: 430px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        width: 200px;
+        height: 60px;
     }
 </style>
