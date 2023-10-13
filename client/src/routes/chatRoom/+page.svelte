@@ -40,7 +40,6 @@
                 token: token,
             },
         });
-        console.log(socket.connected);
 
         socket.on("connect", () => {
             console.log("connected");
@@ -86,11 +85,11 @@
 
     async function handleDeleteChat() {
         try {
-            let res = await axios.delete("http://localhost:3000/chatRooms", {
+            let res = await axios.post("http://localhost:3000/chatRooms", {
                 roomId: userData.roomId,
             });
             if (res.data.code === 200) {
-                window.location.href = "http://localhost:5173/";
+                window.location.href = "http://localhost:5173";
             }
         } catch (err) {
             let res = err.message;
@@ -161,7 +160,7 @@
         </div>
         <div class="bot-right doodle doodle-border">
             <div class="User">haha</div>
-            <div class="">
+            <div>
                 <input
                     class="logout doodle"
                     on:click={handleDeleteChat}
@@ -172,23 +171,6 @@
         </div>
     </div>
 </div>
-
-<!-- <h1>chatRoom Ne</h1>
-<h2>Room: `{userData.roomId}`</h2>
-
-{#if isConnected}
-    <p>Room name: <b>{userData.roomId}</b></p>
-    <form>
-        <input
-            bind:value={messageContent}
-            bind:this={inputMessageDom}
-            type="text"
-            placeholder="Type message here"
-        />
-        <input on:click={handleSubmit} type="submit" />
-    </form>
-{/if}
- -->
 
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Short+Stack&display=swap");
@@ -281,8 +263,8 @@
         padding-right: 10px;
         padding-left: 30px;
     }
-    .bot-right {
-    }
+    /* .bot-right {
+    } */
     .logout {
         margin: 0 auto;
         margin-top: 430px;

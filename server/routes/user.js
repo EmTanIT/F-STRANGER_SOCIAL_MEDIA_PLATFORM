@@ -71,9 +71,9 @@ router.post('/', async (req, res) => {
                 })//Join vô phòng đó
 
                 const userInfo = {
-                    id : newUser.id,
-                    username : newUser.username,
-                    roomId : roomFinded.roomId
+                    id: newUser.id,
+                    username: newUser.username,
+                    roomId: roomFinded.roomId
                 }
 
                 sendToken(res, userInfo)
@@ -99,11 +99,11 @@ router.post('/', async (req, res) => {
                     userId: newUser.id,
                     roomId: room.id
                 })//Tạo mới 1 phòng chat
-                
+
                 const userInfo = {
-                    id : newUser.id,
-                    username : newUser.username,
-                    roomId : chatRoom.roomId
+                    id: newUser.id,
+                    username: newUser.username,
+                    roomId: chatRoom.roomId
                 }
 
                 sendToken(res, userInfo)
@@ -132,11 +132,11 @@ router.post('/', async (req, res) => {
                 })
             }
             console.log("Finding room Successfully !");
-            
+
             const userInfo = {
-                id : user.id,
-                username : user.username,
-                roomId : room.id
+                id: user.id,
+                username: user.username,
+                roomId: room.id
             }
 
             sendToken(res, userInfo)
@@ -163,24 +163,20 @@ function sendToken(res, userInfo) {
     }))
 }
 
-export async function deleteUser(room){
-    const userList = await ChatRoom.findAll({
-        where : {
-            roomId : room
-        },
-        attributes:['userId']
-    })
-    if(userList){
-        const result = await ChatRoom.destroy({
-            where : {
-                id : userList
+export async function deleteUser(userList) {
+    if (userList) {
+        for (let i = 0; i < userList.length; i++) {
+            let result = await User.destroy({
+                where: {
+                    id: userList[i].dataValues.userId
+                }
+            })
+            if (!result) {
+                throw new Error("Fail in Deleting !")
             }
-        })
-        if(!result){
-            throw new Error("Fail in Delete User !")
         }
     } else {
-        throw new Error("Fail in Delete User !")
+        throw new Error("UserList is null !")
     }
 }
 

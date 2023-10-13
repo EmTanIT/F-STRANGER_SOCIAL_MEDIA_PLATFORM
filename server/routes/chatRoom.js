@@ -16,17 +16,23 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.delete('/', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const room = req.body.roomId
+        const userList = await ChatRoom.findAll({
+            where : {
+                roomId : room
+            },
+            attributes:['userId']
+        })
         const result = await ChatRoom.destroy({
             where: {
                 roomId: room
             }
         })
         await deleteMessages(room)
-        await deleteUser(room)
         await deleteRoom(room)
+        await deleteUser(userList)
         if (result) {
             res.json(MessageResponse("Deleted Room Chat !"))
         } else {

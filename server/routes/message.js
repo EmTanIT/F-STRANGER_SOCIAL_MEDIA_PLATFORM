@@ -24,7 +24,6 @@ router.post('/', async (req, res) => {
                 },
             }
         );
-        console.log(messages.length);
         let messageList = [];
         messages.forEach((element, i) => {
             let senderN = {

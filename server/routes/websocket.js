@@ -56,5 +56,4 @@ export function initWebsocket(serverInstance) {
                 console.log(`${socket.id} disconnected`)
             })
         })
-
 }
