@@ -49,7 +49,7 @@
 
         socket.on("connect_error", (error) => {
             if (error.message === "unauthorized") {
-                window.location.href = "/login";
+                window.location.href = "../";
             }
         });
 
@@ -73,12 +73,25 @@
                 roomId: userData.roomId,
             });
             if (res.data.code === 200) {
-                console.log(res);
                 let messageList = res.data.data;
                 console.log(messageList);
                 messages = [...messages, ...messageList];
             }
             console.log(messages);
+        } catch (err) {
+            let res = err.message;
+            console.log(res);
+        }
+    }
+
+    async function handleDeleteChat() {
+        try {
+            let res = await axios.delete("http://localhost:3000/chatRooms", {
+                roomId: userData.roomId,
+            });
+            if (res.data.code === 200) {
+                window.location.href = "http://localhost:5173/";
+            }
         } catch (err) {
             let res = err.message;
             console.log(res);
@@ -105,12 +118,14 @@
         <div class="bot-left doodle doodle-border">
             <div class="doodle content">
                 {#each messages as msg}
-                    <div class= "line">
-                        <div class= { "item doodle doodle-border " +
-                        (msg.sender.id === userData.id
-                            ? "blue"
-                            : "red")}>
-                        {msg.content}
+                    <div class="line">
+                        <div
+                            class={"item doodle doodle-border " +
+                                (msg.sender.id === userData.id
+                                    ? "blue"
+                                    : "red")}
+                        >
+                            {msg.content}
                         </div>
                         <!-- <span
                             class={"msg-sender " +
@@ -145,11 +160,14 @@
             {/if}
         </div>
         <div class="bot-right doodle doodle-border">
-            <div class="User">
-                haha
-            </div>
-            <div class="logout doodle doodle-border">
-                End Chat
+            <div class="User">haha</div>
+            <div class="">
+                <input
+                    class="logout doodle"
+                    on:click={handleDeleteChat}
+                    type="submit"
+                    value="End Chat"
+                />
             </div>
         </div>
     </div>
@@ -215,15 +233,15 @@
         height: 440px;
         overflow-y: auto;
     }
-    .margin{
+    .margin {
         margin-top: 6px;
-        background-color: #FDF7F1;
+        background-color: #fdf7f1;
     }
-    .message{
+    .message {
         background-color: bisque !important;
         /* margin-top: 10px; */
     }
-    .message-bottom{
+    .message-bottom {
         /* margin-top: 10px;
         height: 40px;
         margin-left: 10px;
@@ -237,7 +255,7 @@
         /* margin-right: 2px;
         margin-left: 5px; */
     }
-    .line{
+    .line {
         width: auto;
         height: 38px;
         /* background-color: blue; */
@@ -245,10 +263,9 @@
         margin-left: 0px;
         position: relative;
     }
-    .item{
+    .item {
         height: 38px;
         width: auto;
-        
     }
     .blue {
         /* color: blue; */
@@ -264,10 +281,9 @@
         padding-right: 10px;
         padding-left: 30px;
     }
-    .bot-right{
-        
+    .bot-right {
     }
-    .logout{
+    .logout {
         margin: 0 auto;
         margin-top: 430px;
         display: flex;

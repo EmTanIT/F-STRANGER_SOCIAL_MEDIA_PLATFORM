@@ -48,4 +48,15 @@ router.post('/', async (req, res) => {
     }
 })
 
+export async function deleteMessages(room){
+    const result = await Message.destroy({
+        where : {
+            chatRoomId : room
+        }
+    })
+    if(!result){
+        throw new Error("Fail in delete Messages !")
+    }
+}
+
 export default router

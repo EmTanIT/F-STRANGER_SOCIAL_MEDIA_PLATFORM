@@ -12,4 +12,15 @@ router.get('/', async (req, res) => {
     }
 })
 
+export async function deleteRoom(room) {
+    const result = await Room.destroy({
+        where : {
+            id : room
+        }
+    })
+    if(!result){
+        throw new Error("Fail in Delete Room !")
+    }
+}
+
 export default router

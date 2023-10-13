@@ -163,4 +163,25 @@ function sendToken(res, userInfo) {
     }))
 }
 
+export async function deleteUser(room){
+    const userList = await ChatRoom.findAll({
+        where : {
+            roomId : room
+        },
+        attributes:['userId']
+    })
+    if(userList){
+        const result = await ChatRoom.destroy({
+            where : {
+                id : userList
+            }
+        })
+        if(!result){
+            throw new Error("Fail in Delete User !")
+        }
+    } else {
+        throw new Error("Fail in Delete User !")
+    }
+}
+
 export default router
