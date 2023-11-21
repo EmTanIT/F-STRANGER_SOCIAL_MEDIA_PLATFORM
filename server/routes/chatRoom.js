@@ -4,8 +4,12 @@ import { DataResponse, NotFoundResponse, MessageResponse, InternalErrorResponse,
 import { deleteRoom } from './room.js'
 import { deleteMessages } from './message.js'
 import { deleteUser } from './user.js'
+import { getIo } from './websocket.js'
+// import { getIo } from './websocket.js'
 
 const router = express.Router()
+
+const END_CHAT_EVENT = "end chat";
 
 router.get('/', async (req, res) => {
     const chatRooms = await ChatRoom.findAll();
@@ -34,6 +38,8 @@ router.post('/', async (req, res) => {
         await deleteRoom(room)
         await deleteUser(userList)
         if (result) {
+            const io = getIo()
+            io.to(room).emit(END_CHAT_EVENT)
             res.json(MessageResponse("Deleted Room Chat !"))
         } else {
             res.json(InternalErrorResponse())

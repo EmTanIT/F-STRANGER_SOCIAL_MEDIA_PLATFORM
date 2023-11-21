@@ -48,6 +48,15 @@ router.post('/', async (req, res) => {
 })
 
 export async function deleteMessages(room){
+    console.log(room);
+    const check = await Message.findOne({
+        where : {
+            chatRoomId : room
+        }
+    })
+    if(!check){
+        return
+    }
     const result = await Message.destroy({
         where : {
             chatRoomId : room

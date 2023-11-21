@@ -35,7 +35,7 @@
     }
 
 </script>
-<link rel="stylesheet" href="doodle.css" />
+<!-- <link rel="stylesheet" href="doodle.css" /> -->
 <div class="doodle-border doodle main">
     <div class="welcome">F-STRANGERS</div>
     <div class="input">

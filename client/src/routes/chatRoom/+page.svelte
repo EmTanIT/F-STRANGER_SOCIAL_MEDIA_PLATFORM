@@ -9,6 +9,7 @@
     let token = "";
     let userData = "";
     const SEND_MESSAGE_EVENT = "send message";
+    const END_CHAT_EVENT = "end chat";
 
     let roomName = "";
     let isConnected = false;
@@ -60,6 +61,11 @@
         socket.on(SEND_MESSAGE_EVENT, (msg) => {
             messages = [...messages, msg];
         });
+
+        socket.on(END_CHAT_EVENT, () => {
+            document.cookie = token + '=; Max-Age=0; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            window.location.href = "../";
+        });
     }
 
     async function fetchDatabase() {
@@ -88,9 +94,9 @@
             let res = await axios.post("http://localhost:3000/chatRooms", {
                 roomId: userData.roomId,
             });
-            if (res.data.code === 200) {
-                window.location.href = "http://localhost:5173";
-            }
+            // if (res.data.code === 200) {
+            //     socket.emit(END_CHAT_EVENT, userData.roomId);
+            // }
         } catch (err) {
             let res = err.message;
             console.log(res);
@@ -105,10 +111,14 @@
         userData = jwtDecode(token);
         fetchDatabase();
         connectWebSocket();
+        // if (!token || !isConnected) {
+        //     window.location.href = "../";
+        // }
     });
 </script>
 
-<link rel="stylesheet" href="doodle.css" />
+<!-- <link rel="stylesheet" href="doodle.css"/> -->
+{#if isConnected}
 <div class="container doodle doodle-border">
     <div class="top doodle doodle doodle-border">
         Đặc vụ "{userData.username}", xin chào ngài !
@@ -138,7 +148,6 @@
                     </div>
                 {/each}
             </div>
-            {#if isConnected}
                 <div class="message-bottom doodle-border">
                     <form class="doodle message">
                         <input
@@ -156,12 +165,12 @@
                         />
                     </form>
                 </div>
-            {/if}
         </div>
         <div class="bot-right doodle doodle-border">
             <div class="User">haha</div>
             <div>
                 <input
+                    id="endChat"
                     class="logout doodle"
                     on:click={handleDeleteChat}
                     type="submit"
@@ -171,6 +180,8 @@
         </div>
     </div>
 </div>
+{/if}
+
 
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Short+Stack&display=swap");

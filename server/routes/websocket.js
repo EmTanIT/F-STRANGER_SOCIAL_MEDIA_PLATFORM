@@ -4,10 +4,13 @@ import Message from '../models/Message.js'
 
 const SEND_MESSAGE_EVENT = 'send message'
 const UNAUTHORIZED_ERROR = 'unauthorized'
+const END_CHAT_EVENT = "end chat";
+
+let io
 
 export function initWebsocket(serverInstance) {
 
-    const io = new WSServer(serverInstance, {
+    io = new WSServer(serverInstance, {
         cors: '*'
     })
 
@@ -46,7 +49,7 @@ export function initWebsocket(serverInstance) {
                 }
                 await Message.create({
                     userId: socket.data.id,
-                    chatRoomId : socket.data.roomId,
+                    chatRoomId: socket.data.roomId,
                     content: "" + msg + ""
                 })
                 socket.to(roomName).emit(SEND_MESSAGE_EVENT, message)
@@ -56,4 +59,11 @@ export function initWebsocket(serverInstance) {
                 console.log(`${socket.id} disconnected`)
             })
         })
+}
+
+export function getIo() {
+    if (!io) {
+        throw new Error('Socket.io not initialized')
+    }
+    return io
 }
