@@ -8,11 +8,13 @@
 
     let token = "";
     let userData = "";
+    let roomMate;
     const SEND_MESSAGE_EVENT = "send message";
     const END_CHAT_EVENT = "end chat";
 
     let roomName = "";
     let isConnected = false;
+    let roomMateCheck = false;
 
     let inputMessageDom;
     let messages = [];
@@ -69,7 +71,6 @@
     }
 
     async function fetchDatabase() {
-        console.log(userData);
         if (!token) {
             return;
         }
@@ -94,10 +95,37 @@
             let res = await axios.post("http://localhost:3000/chatRooms", {
                 roomId: userData.roomId,
             });
-            // if (res.data.code === 200) {
-            //     socket.emit(END_CHAT_EVENT, userData.roomId);
-            // }
         } catch (err) {
+            let res = err.message;
+            console.log(res);
+        }
+    }
+
+    async function findRoomInfo(){
+        try{
+            let res = await axios.post("http://localhost:3000/chatRooms/info", {
+                roomId: userData.roomId,
+            });
+            if (res.data.code === 200) {
+                let roomInfo = res.data.data;
+                console.log(roomInfo);
+                console.log(userData.id);
+                for (const item of roomInfo) {
+                    if (item.userId !== userData.id) {
+                        roomMate = item;
+                    }
+                }
+                // console.log("roomate" );
+                // console.log(roomMate);
+                // console.log(userData);
+                roomName = userData.roomName;
+                // console.log(roomName);
+                if (roomMate) {
+                    roomMateCheck = true;
+                }
+            }
+        } catch (err) {
+            console.log(err);
             let res = err.message;
             console.log(res);
         }
@@ -109,11 +137,14 @@
         );
         token = cookie.get("token");
         userData = jwtDecode(token);
+        console.log("check:");
+        console.log(userData);
         fetchDatabase();
         connectWebSocket();
-        // if (!token || !isConnected) {
-        //     window.location.href = "../";
-        // }
+        findRoomInfo();
+        if (!token) {
+            window.location.href = "../";
+        }
     });
 </script>
 
@@ -136,15 +167,6 @@
                         >
                             {msg.content}
                         </div>
-                        <!-- <span
-                            class={"msg-sender " +
-                                (msg.sender.id === userData.id
-                                    ? "blue"
-                                    : "red")}
-                        >
-                            {msg.sender.username}:
-                        </span> -->
-                        <!-- <span class="msg-content">{msg.content}</span> -->
                     </div>
                 {/each}
             </div>
@@ -167,7 +189,13 @@
                 </div>
         </div>
         <div class="bot-right doodle doodle-border">
-            <div class="User">haha</div>
+            <div class="User doodle">Tên Phòng: {roomName}</div>
+            {#if !roomMateCheck}
+                <div class="User doodle">Bạn chưa có đối tác chat!</div>
+            {/if}
+            {#if roomMateCheck}
+                <div class="User doodle">Bạn đang chat với: {roomMate.user.username}</div>
+            {/if}
             <div>
                 <input
                     id="endChat"

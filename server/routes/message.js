@@ -2,7 +2,6 @@ import express from 'express'
 import Message from '../models/Message.js'
 import { DataResponse, NotFoundResponse, MessageResponse, InternalErrorResponse, ErrorResponse, UnauthorizedResponse } from '../common/reponses.js'
 import User from '../models/User.js'
-import sequelize from 'sequelize'
 
 const router = express.Router()
 

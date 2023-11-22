@@ -73,7 +73,8 @@ router.post('/', async (req, res) => {
                 const userInfo = {
                     id: newUser.id,
                     username: newUser.username,
-                    roomId: roomFinded.roomId
+                    roomId: roomFinded.roomId,
+                    roomName: roomAvailable.roomName
                 }
 
                 sendToken(res, userInfo)
@@ -103,9 +104,10 @@ router.post('/', async (req, res) => {
                 const userInfo = {
                     id: newUser.id,
                     username: newUser.username,
-                    roomId: chatRoom.roomId
+                    roomId: chatRoom.roomId,
+                    roomName: room.roomName
                 }
-
+                console.log(userInfo);
                 sendToken(res, userInfo)
 
             }
@@ -119,7 +121,7 @@ router.post('/', async (req, res) => {
             let room
             const chatRoom = await ChatRoom.findAll({
                 where: {
-                    userId: user.id
+                    userId: user.id 
                 }
             })
             for (let i = 0; i < chatRoom.length; i++) {
@@ -136,9 +138,10 @@ router.post('/', async (req, res) => {
             const userInfo = {
                 id: user.id,
                 username: user.username,
-                roomId: room.id
+                roomId: room.id,
+                roomName: room.roomName
             }
-
+            console.log(userInfo);
             sendToken(res, userInfo)
 
         } catch (error) {
@@ -149,12 +152,7 @@ router.post('/', async (req, res) => {
 })
 
 function sendToken(res, userInfo) {
-    const payload = {
-        id: userInfo.id,
-        username: userInfo.username,
-        roomId: userInfo.roomId,
-    }
-    const token = jwt.sign(payload, process.env.SECRET, {
+    const token = jwt.sign(userInfo, process.env.SECRET, {
         expiresIn: '3h'
     })
     res.cookie('token', token)

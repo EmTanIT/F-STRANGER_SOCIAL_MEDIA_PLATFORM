@@ -5,6 +5,8 @@ import { deleteRoom } from './room.js'
 import { deleteMessages } from './message.js'
 import { deleteUser } from './user.js'
 import { getIo } from './websocket.js'
+import User from '../models/User.js'
+import Room from '../models/Room.js'
 // import { getIo } from './websocket.js'
 
 const router = express.Router()
@@ -46,7 +48,30 @@ router.post('/', async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        res.json(InternalErrorResponse(error))
+        res.json(ErrorResponse(400, error.message))
+    }
+})
+
+router.post('/info' , async (req,res) => {
+    try{
+        const room = req.body.roomId
+        const userList = await ChatRoom.findAll({
+            where : {
+                roomId : room
+            },
+            include : [
+                {
+                    model : Room
+                },
+                {
+                    model : User
+                }
+            ]
+        })
+        res.json(DataResponse(userList))
+    } catch(error){
+        console.log(error);
+        res.json(ErrorResponse(400, error.message))
     }
 })
 
