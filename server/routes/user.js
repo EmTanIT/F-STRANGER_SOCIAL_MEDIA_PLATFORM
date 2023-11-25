@@ -4,8 +4,10 @@ import { DataResponse, NotFoundResponse, MessageResponse, InternalErrorResponse,
 import Room from '../models/Room.js'
 import ChatRoom from '../models/ChatRoom.js'
 import jwt from 'jsonwebtoken'
+import { getIo } from './websocket.js'
 
 const router = express.Router()
+const JOIN_ROOM_EVENT = "join room";
 
 router.get('/', async (req, res) => {
     const users = await User.findAll();
@@ -76,7 +78,8 @@ router.post('/', async (req, res) => {
                     roomId: roomFinded.roomId,
                     roomName: roomAvailable.roomName
                 }
-
+                const io = getIo()
+                io.to(roomFinded.roomId).emit(JOIN_ROOM_EVENT)
                 sendToken(res, userInfo)
 
             } else {//chưa tìm được
@@ -107,7 +110,6 @@ router.post('/', async (req, res) => {
                     roomId: chatRoom.roomId,
                     roomName: room.roomName
                 }
-                console.log(userInfo);
                 sendToken(res, userInfo)
 
             }
@@ -121,7 +123,7 @@ router.post('/', async (req, res) => {
             let room
             const chatRoom = await ChatRoom.findAll({
                 where: {
-                    userId: user.id 
+                    userId: user.id
                 }
             })
             for (let i = 0; i < chatRoom.length; i++) {
@@ -141,7 +143,8 @@ router.post('/', async (req, res) => {
                 roomId: room.id,
                 roomName: room.roomName
             }
-            console.log(userInfo);
+            const io = getIo()
+            io.to(room.id).emit(JOIN_ROOM_EVENT)
             sendToken(res, userInfo)
 
         } catch (error) {

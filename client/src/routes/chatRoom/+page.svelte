@@ -11,6 +11,7 @@
     let roomMate;
     const SEND_MESSAGE_EVENT = "send message";
     const END_CHAT_EVENT = "end chat";
+    const JOIN_ROOM_EVENT = "join room";
 
     let roomName = "";
     let isConnected = false;
@@ -68,6 +69,11 @@
             document.cookie = token + '=; Max-Age=0; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
             window.location.href = "../";
         });
+
+        socket.emit(JOIN_ROOM_EVENT, () => {
+            window.location.reload();
+        });
+
     }
 
     async function fetchDatabase() {
