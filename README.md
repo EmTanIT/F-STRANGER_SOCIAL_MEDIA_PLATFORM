@@ -1,4 +1,4 @@
-<h1> F-STRANGER <br> An anounymous chatting platform </h1>
+<h1> F-STRANGER - An anounymous chatting platform </h1>
 This is a "<i>Mini Capstone Project</i>" of FPT University Students in semester 5.<br>
 
 # 0. Introduction
