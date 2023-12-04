@@ -1,4 +1,4 @@
-<h1> F-STRANGER - An Anounymous Chatting Platform </h1>
+<h1> F-STRANGER - An Anounymous Chatting Platform !</h1>
 This is a "<i>social platform for individuals with shared perspectives while preserving anonymity</i>".<br>
 
 # 0. Introduction
