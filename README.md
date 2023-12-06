@@ -73,3 +73,4 @@ Node: v18.16.1
 # 5. Relational Schema
 ![Project Relational Schema](https://drive.google.com/uc?id=1ZeVqW1G_4tr1LF0al-llYSRHs0FRDlcH)
 
+#### © 2023 bentran-vn
