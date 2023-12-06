@@ -15,10 +15,10 @@ This software system offers a comprehensive solution for managing examination sc
 - **Student:** Has the ability to manage personal exam attendance schedules for each term.
 
 # 1. Web Application Interface
-## Login Screen
+### Login Screen
 ![Login Screen](https://drive.google.com/uc?id=1I8OlH2KaebVDsobtsGohh0QS5rf-iiVt)
 
-## Chatting Screen
+### Chatting Screen
 ![Chatting Screen](https://drive.google.com/uc?id=1u_GvQZfXsKL1X3q0p5jMMIOqlFEp0ayR)
 
 # 1. Use case diagram
