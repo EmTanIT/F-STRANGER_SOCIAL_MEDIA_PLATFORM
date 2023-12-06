@@ -55,7 +55,7 @@ npm install --save
 ```
 #### Running the Project
 
-Once the dependencies are installed, initiate the project by running the server using Vite:
+Once the dependencies are installed, initiate the project by running the client using Vite:
 
 ```bash
 npm run dev
