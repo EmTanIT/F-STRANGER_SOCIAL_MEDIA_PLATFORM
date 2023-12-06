@@ -4,7 +4,7 @@ This is a "<i>social platform for individuals with shared perspectives while pre
 # 0. Introduction
 This software system offers a comprehensive solution for managing examination schedules at FPT University Ho Chi Minh City. The platform caters to four primary actors: Students, Lecturers, Administrators, and Staff. The system encompasses notable features, such as automated exam invigilation schedule registration for lecturers, automatic email notifications, and the ability to automatically close the invigilation registration portal for lecturers.
 
-### Roles and Responsibilities of Each Actor:
+### Notable Features:
 
 - **Administrator:** Responsible for managing exam schedules per semester and year. Capable of adding new examination schedules for each term by importing an Excel file.
 
