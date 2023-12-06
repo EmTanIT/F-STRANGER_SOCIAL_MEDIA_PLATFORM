@@ -6,14 +6,10 @@ Nowadays, adolescents tend to suffer from autism due to the development of techn
 
 ### Notable Features:
 
-- **Administrator:** Responsible for managing exam schedules per semester and year. Capable of adding new examination schedules for each term by importing an Excel file.
+- The system can match you with other stranger users randomly and put both in the chatting room.
 
-- **Staff:** Tasked with exam schedule management across different terms and years. Organizes examination schedules for individual lecturers, specific subjects, and students.
-
-- **Lecturer:** Capable of managing personal exam invigilation schedules per term and year. Can register for invigilation schedules.
-  
-- **Student:** Has the ability to manage personal exam attendance schedules for each term.
-
+- The chat room will be cancelled if one of them does not feel suitable or enjoyable with their new "friend" or maybe they feel not enough safe, they can leave anytime immediately.
+- 
 # 1. Web Application Interface
 ### Login Screen
 ![Login Screen](https://drive.google.com/uc?id=1I8OlH2KaebVDsobtsGohh0QS5rf-iiVt)
