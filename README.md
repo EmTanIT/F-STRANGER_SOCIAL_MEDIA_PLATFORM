@@ -29,7 +29,7 @@ Nowadays, adolescents tend to suffer from autism due to the development of techn
 To clone the repository, use the following command in your terminal:
 
 ```bash
-git clone https://github.com/bentran-vn/MINION-ESMS-BACKEND-EXAM_SCHEDULE_MANAGEMENT_SYSTEM.git
+git clone https://github.com/bentran-vn/PERSONAL-F_STRANGER-ANONYMOUS_CHATTING_PLATFORM.git
 ```
 ### Install Dependencies
 
