@@ -9,7 +9,7 @@ Nowadays, adolescents tend to suffer from autism due to the development of techn
 - The system can match you with other stranger users randomly and put both in the chatting room.
 
 - The chat room will be cancelled if one of them does not feel suitable or enjoyable with their new "friend" or maybe they feel not enough safe, they can leave anytime immediately.
-- 
+  
 # 1. Web Application Interface
 ### Login Screen
 ![Login Screen](https://drive.google.com/uc?id=1I8OlH2KaebVDsobtsGohh0QS5rf-iiVt)
