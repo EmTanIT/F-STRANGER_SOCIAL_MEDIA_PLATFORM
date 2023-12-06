@@ -21,9 +21,6 @@ This software system offers a comprehensive solution for managing examination sc
 ### Chatting Screen
 ![Chatting Screen](https://drive.google.com/uc?id=1u_GvQZfXsKL1X3q0p5jMMIOqlFEp0ayR)
 
-# 1. Use case diagram
-![Project Relational Schema](https://drive.google.com/uc?id=11OStsOL0eOhctb_wo_avuYgPzj-Q3__2)
-
 # 2. Techstacks
 
 ![Project Relational Schema](https://drive.google.com/uc?id=1TcefZxtdhIYq-qBHkBRXReuckMjZnzwE)
