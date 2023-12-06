@@ -35,12 +35,12 @@ git clone https://github.com/bentran-vn/MINION-ESMS-BACKEND-EXAM_SCHEDULE_MANAGE
 
 After cloning the repository, Open 2 terminals screen for Client and Backend, navigate into the project directory and install the required dependencies using npm:
 
-#### Server
+### Server
 ```bash
 cd F-Strangers\server
 npm install --save
 ```
-### Running the Project
+#### Running the Project
 
 Once the dependencies are installed, initiate the project by running the server using Node.js:
 
@@ -48,12 +48,12 @@ Once the dependencies are installed, initiate the project by running the server 
 node server.js
 ```
 
-#### Client
+### Client
 ```bash
 cd F-Strangers\client
 npm install --save
 ```
-### Running the Project
+#### Running the Project
 
 Once the dependencies are installed, initiate the project by running the server using Node.js:
 
