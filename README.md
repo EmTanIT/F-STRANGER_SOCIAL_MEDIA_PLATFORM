@@ -56,16 +56,3 @@ Node: v18.16.1
 # 5. Relational Schema
 ![Project Relational Schema](https://drive.google.com/uc?id=1neYrND8E90t6hB1EgC9ICQV2IgRseHyf)
 
-# 6. Team Members
-
-| Name                    	| UniID      	| Role      	| Position                      	|
-|-------------------------	|------------	|------------	|-------------------------------	|
-| [**Trần Đình Thiên Tân**](https://github.com/bentran-vn) 	| **SE171757** 	| **Backend** 	| **Team Leader, Backend Leader** 	|
-| [**Lại Nguyễn Minh Quân**](https://github.com/jeffySE29) | **SE170067** 	| **Backend** 	| **Member**                    	|
-| [**Đỗ Dương Đăng Khoa**](https://github.com/khoahocmai)  	| **SE170285** 	| **Backend** 	| **Member**                    	|
-| [**Lê Bảo Khang**](https://github.com/kle1603)        	| **SE171164** 	| **Frontend** | **Frontend Leader**           	|
-| [**Phạm Thị Ngọc Anh**](https://github.com/lachimo)   	| **SE171173** 	| **Frontend** | **Member**                    	|
-
-
-
-
