@@ -19,7 +19,7 @@ Nowadays, adolescents tend to suffer from autism due to the development of techn
 
 # 2. Techstacks
 
-- **Frontend:** Svelte, Axios, Socket.io.
+- **Frontend:** Svelte, Axios, Socket.io, Doodle.css.
   
 - **Backend:** NodeJS, ExpressJS, Sequelize, Socket.io, MySQL.
 
@@ -33,10 +33,11 @@ git clone https://github.com/bentran-vn/MINION-ESMS-BACKEND-EXAM_SCHEDULE_MANAGE
 ```
 ### Install Dependencies
 
-After cloning the repository, navigate into the project directory and install the required dependencies using npm:
+After cloning the repository, Open 2 terminals screen for Client and Backend, navigate into the project directory and install the required dependencies using npm:
 
+#### Server
 ```bash
-cd MINION-ESMS-BACKEND-EXAM_SCHEDULE_MANAGEMENT_SYSTEM
+cd F-Strangers\server
 npm install --save
 ```
 ### Running the Project
@@ -46,10 +47,24 @@ Once the dependencies are installed, initiate the project by running the server 
 ```bash
 node server.js
 ```
+
+#### Client
+```bash
+cd F-Strangers\client
+npm install --save
+```
+### Running the Project
+
+Once the dependencies are installed, initiate the project by running the server using Node.js:
+
+```bash
+npm run dev
+```
 # 4. Project Information
 
 ```sh
 Port: 8080
+Svelte: 4.0.5
 MySQL: 8.1
 Npm: 9.5.1
 Node: v18.16.1
