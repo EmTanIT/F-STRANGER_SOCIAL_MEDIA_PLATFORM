@@ -19,9 +19,9 @@ Nowadays, adolescents tend to suffer from autism due to the development of techn
 
 # 2. Techstacks
 
-- **Frontend:** Svelte, Axios.
+- **Frontend:** Svelte, Axios, Socket.io.
   
-- **Backend:** Has the ability to manage personal exam attendance schedules for each term.
+- **Backend:** NodeJS, ExpressJS, Sequelize, Socket.io, MySQL.
 
 # 3. Installation
 ### Clone the Repository
