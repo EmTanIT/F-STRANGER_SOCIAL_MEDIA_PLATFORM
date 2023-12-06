@@ -2,7 +2,7 @@
 This is a "<i>social platform for individuals with shared perspectives while preserving anonymity</i>".<br>
 
 # 0. Introduction
-This software system offers a comprehensive solution for managing examination schedules at FPT University Ho Chi Minh City. The platform caters to four primary actors: Students, Lecturers, Administrators, and Staff. The system encompasses notable features, such as automated exam invigilation schedule registration for lecturers, automatic email notifications, and the ability to automatically close the invigilation registration portal for lecturers.
+Nowadays, young people tend to suffer from autism due to the development of technology. People increasingly use editing software to make themselves more beautiful in the eyes of everyone, immersed in the virtual world. Forget that it is necessary to develop soft skills in communication, so we have developed a system capable of real-time chatting so that people can experience more based on real life.
 
 ### Notable Features:
 
