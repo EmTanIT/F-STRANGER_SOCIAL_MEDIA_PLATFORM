@@ -32,6 +32,7 @@ server.use('/rooms', roomRouter)
 server.use('/chatRooms', chatRoomRouter)
 server.use('/messages', messageRouter)
 
+// Testing
 const serverInstance = server.listen(PORT, () => {
     console.log(`Server is listening at PORT=${PORT}`)
 })
